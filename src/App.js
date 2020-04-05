@@ -80,7 +80,14 @@ renderEditForm() {
     </form>
   }
 }
-
+renderAddForm(){
+  if(!this.state.edit){
+    return <form onSubmit={this.onSubmitHandle.bind(this)}>
+    <input type="text" name="element" className="element" placeholder="things to do be done..." />
+    <button className="add_element">Add</button>
+  </form>
+  }
+}
 
 //-----------------------------Render Page-----------------------------------------------
   render() {
@@ -88,11 +95,8 @@ renderEditForm() {
     <div>
       <h2>To Do List</h2> 
    
-           {this.renderEditForm()}
-      <form onSubmit={this.onSubmitHandle.bind(this)}>
-        <input type="text" name="element" className="element" placeholder="things to do be done..." />
-        <button className="add_element">Add</button>
-      </form>
+          {this.renderEditForm()}
+          {this.renderAddForm()}
       
       <ul>
       {this.state.todoList.map(item => (
